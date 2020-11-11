@@ -1,8 +1,16 @@
-import { isFunction, register, printErrorTips, Options, Adapter } from '../shared';
+import { isFunction, register, printErrorTips, Options, AdapterBase } from '../shared';
 
 declare const window: Window & { webkit: any };
 
-export default class IOS implements Adapter {
+export default class IOS implements AdapterBase {
+  platform (): boolean {
+    if (typeof window !== 'object') {
+      return false;
+    }
+    
+    return !!window.navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+  }
+
   support (name: string): boolean {
     let support: boolean = false;
 

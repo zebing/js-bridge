@@ -1,3 +1,5 @@
+import defaultAdapter from './defaultAdapter';
+
 const call: Function = (value: String) => Object.prototype.toString.call(value);
 
 export const isArray: Function = (value: string) => call(value) === '[object Array]';
@@ -26,7 +28,13 @@ export interface Options {
   callback?: unknown
 }
 
-export interface Adapter {
+export interface AdapterBase {
+  platform ():boolean,
   support(name: string): boolean;
   run(name: string, options: Options): void;
+}
+
+export function getAdapter(adapters: AdapterBase[]) {
+  adapters.push(new defaultAdapter());
+  return adapters.find((adapter) => adapter.support);
 }
