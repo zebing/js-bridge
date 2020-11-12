@@ -1,4 +1,5 @@
 import defaultAdapter from './defaultAdapter';
+import { printDefinedTips } from './tooltips';
 
 const call: Function = (value: String) => Object.prototype.toString.call(value);
 
@@ -36,5 +37,13 @@ export interface AdapterBase {
 
 export function getAdapter(adapters: AdapterBase[]) {
   adapters.push(new defaultAdapter());
-  return adapters.find((adapter) => adapter.support);
+  
+  return adapters.find((adapter) => {
+    if (!isFunction(adapter.platform)) {
+      printDefinedTips('platform', adapter);
+      return false;
+    }
+
+    return adapter.platform();
+  });
 }

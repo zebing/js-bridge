@@ -7,7 +7,7 @@ export default class IOS implements AdapterBase {
     if (typeof window !== 'object') {
       return false;
     }
-    
+
     return !!window.navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
   }
 

@@ -1,3 +1,5 @@
+import { AdapterBase } from './util';
+
 interface Tips {
   name: string,
   platrform: string,
@@ -14,5 +16,9 @@ export const printErrorTips = ({ name, platrform, options, error = {} }: Tips): 
 };
 
 export const printDefaultAdapterTips = (): void => {
-  console.warn(`[Invalid Adapter] 没有Adapter可用, 请通过config方法进行配置。`);
+  console.warn(`[Invalid Adapter] 该平台没有Adapter可用, 请通过 create 方法进行配置。`);
+}
+
+export const printDefinedTips = (name: string, adapter: AdapterBase): void => {
+  console.warn(`[Uncaught ReferenceError] ${name} 未定义，create 传入的 adapter 应满足如下格式： { platform: function() {}, support: function() {}, run: function() {} }, 当前参数为： `, adapter);
 }

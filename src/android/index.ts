@@ -8,13 +8,16 @@ export default class Android implements AdapterBase {
     if (typeof window !== 'object') {
       return false;
     }
+    
     const userAgent: string = window.navigator.userAgent;
     return userAgent.indexOf('Android') > -1 || userAgent.indexOf('Adr') > -1;
   }
 
   support (name: string): boolean {
     const apis: object = window['jsBridgeMethods'] || {};
-    return isFunction(apis[name]);
+    const support = isFunction(apis[name]);
+
+    return support;
   }
 
   run (name: string, options: Options): void {

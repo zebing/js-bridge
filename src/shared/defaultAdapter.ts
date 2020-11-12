@@ -8,7 +8,6 @@ export default class defaultAdapter implements AdapterBase {
   }
 
   support(name: string): boolean {
-    printRegistTips({ name, platrform: 'unrecognized', options: {}, error: {} });
     return false;
   }
 
