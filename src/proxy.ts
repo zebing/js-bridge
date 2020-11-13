@@ -1,8 +1,9 @@
-import { printRegistTips } from './shared';
+import { printRegistTips, defaultAdapter, printFunctionTips, isFunction } from './shared';
 
 export default (runner) => {
   return new Proxy(runner, {
     get(target, prop): Function {
+
       // target不支持 prop 方法
       if (!target.support(prop)) {
         return function (options): void {
@@ -10,7 +11,10 @@ export default (runner) => {
           try {
             platform = window.navigator.userAgent;
           } catch(err) {}
-          printRegistTips({ name: prop, platform, options, error: {} });
+          
+          if (!(target instanceof defaultAdapter)) {
+            printRegistTips({ name: prop, platform, options, error: {} });
+          }
         };
       }
 

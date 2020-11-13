@@ -1,5 +1,5 @@
 import defaultAdapter from './defaultAdapter';
-import { printDefinedTips } from './tooltips';
+import { printFunctionTips, printAdapterTips } from './tooltips';
 
 const call: Function = (value: String) => Object.prototype.toString.call(value);
 
@@ -36,14 +36,31 @@ export interface AdapterBase {
 }
 
 export function getAdapter(adapters: AdapterBase[]) {
-  adapters.push(new defaultAdapter());
-  
-  return adapters.find((adapter) => {
+  const adapter: AdapterBase = adapters.find((adapter: AdapterBase) => {
     if (!isFunction(adapter.platform)) {
-      printDefinedTips('platform', adapter);
       return false;
     }
 
     return adapter.platform();
   });
+
+  // adapter 是否存在
+  if (!adapter) {
+    printAdapterTips();
+    return new defaultAdapter();
+  }
+
+  // support 方法是否存在
+  if (!isFunction(adapter.support)) {
+    printFunctionTips('support', adapter);
+    return new defaultAdapter();
+  }
+
+  // run 方法是否存在
+  if (!isFunction(adapter.run)) {
+    printFunctionTips('run', adapter);
+    return new defaultAdapter();
+  }
+
+  return adapter;
 }

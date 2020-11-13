@@ -35,7 +35,7 @@ export default class IOS implements AdapterBase {
 
       window.webkit.messageHandlers[name].postMessage(JSON.stringify(data));
     } catch (error) {
-      printErrorTips({ name, platrform: 'ios', options, error })
+      printErrorTips({ name, platform: 'ios', options, error })
     }
   }
 }

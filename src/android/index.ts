@@ -31,7 +31,7 @@ export default class Android implements AdapterBase {
       
       window.jsBridgeMethods[name](JSON.stringify(data));
     } catch (error) {
-      printErrorTips({ name, platrform: 'android', options, error });
+      printErrorTips({ name, platform: 'android', options, error });
     }
   }
 }
