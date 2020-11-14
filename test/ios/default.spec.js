@@ -1,16 +1,6 @@
 
 const JsBridge = require('../../dist').default;
 
-// test('android default jsBridge', () => {
-//   const mockCallback = jest.fn(body => body.param);
-//   const options = {
-//     param: 'android default jsBridge',
-//     callback: mockCallback
-//   };
-//   JsBridge.test(options);
-//   expect(mockCallback.mock.results[0].value).toBe(options.param);
-// });
-
 describe('ios平台', () => {
   test('调用已注册 test 方法', () => {
     const mockCallback = jest.fn(body => body.param);

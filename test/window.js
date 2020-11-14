@@ -43,3 +43,22 @@ if (process.env.PLATFORM === 'ios') {
   })
 }
 
+// 未知端
+if (process.env.PLATFORM === 'unknown') {
+  Object.defineProperty(window.navigator, 'userAgent', {
+    get () {
+      return "unknown";
+    }
+  })
+
+  Object.defineProperty(window, 'jsBridgeMethods', {
+    get () {
+      return {
+        test (options) {
+          const optionsParse = JSON.parse(options)
+          window[optionsParse.callback](optionsParse);
+        }
+      };
+    }
+  })
+}

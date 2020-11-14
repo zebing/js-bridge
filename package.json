@@ -7,7 +7,11 @@
     "dev": "cross-env NODE_ENV=development BUILD_ENV=development rollup -c -w",
     "build": "del dist && cross-env NODE_ENV=production BUILD_ENV=production rollup -c",
     "example": "node ./examples/index.js",
-    "test": "cross-env PLATFORM=android jest"
+    "test": "npm run test:unknown && npm run test:android && npm run test:ios",
+    "test1": "npm run test:unknown",
+    "test:unknown": "cross-env PLATFORM=unknown jest",
+    "test:android": "cross-env PLATFORM=android jest",
+    "test:ios": "cross-env PLATFORM=ios jest"
   },
   "husky": {
     "hooks": {
