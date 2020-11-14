@@ -1,3 +1,4 @@
+import { isConstructorDeclaration } from 'typescript';
 import defaultAdapter from './defaultAdapter';
 import { printFunctionTips, printAdapterTips } from './tooltips';
 
@@ -30,23 +31,22 @@ export interface Options {
 }
 
 export interface AdapterBase {
-  platform ():boolean,
+  platform (): boolean;
   support(name: string): boolean;
   run(name: string, options: Options): void;
 }
 
 export function getAdapter(adapters: AdapterBase[]) {
-  const adapter: AdapterBase = adapters.find((adapter: AdapterBase) => {
+  const adapter: AdapterBase = adapters.find((adapter: AdapterBase, index: number) => {
     if (!isFunction(adapter.platform)) {
       return false;
     }
-
+    
     return adapter.platform();
   });
 
   // adapter 是否存在
   if (!adapter) {
-    printAdapterTips();
     return new defaultAdapter();
   }
 
