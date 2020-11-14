@@ -1,6 +1,5 @@
-import { isConstructorDeclaration } from 'typescript';
 import defaultAdapter from './defaultAdapter';
-import { printFunctionTips, printAdapterTips } from './tooltips';
+import { printFunctionTips } from './tooltips';
 
 const call: Function = (value: String) => Object.prototype.toString.call(value);
 
