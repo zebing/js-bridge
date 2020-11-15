@@ -80,3 +80,22 @@ create 接收一个数组，可传入多个适配器。一个平台只会使用�
 2. support 方法， 用以判断要调用的方法是否可调用。
 3. run 方法，用以执行调用原生方法进行交互。
 
+### 3. 兼容安卓4.4 及以下低端机
+由于 ```jsBridge.test``` 调用方式采用了Proxy代理，因此会存在安卓4.4 及以下低端机不兼容的问题。但是提供了兼容的方案。如下：
+```
+// 将调用方式
+jsBridge.test({
+  xxx: '参数1'，
+  xxx: '参数2',
+  callback: function () {}
+})
+
+替换成
+jsBridge.run('test', {
+  xxx: '参数1'，
+  xxx: '参数2',
+  callback: function () {}
+})
+```
+
+
