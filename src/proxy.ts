@@ -21,10 +21,14 @@ export default (runner) => {
   }
 
   return new Proxy(runner, {
-    get(target, prop): Function {
+    get(target, prop: string): Function {
       if (target instanceof defaultAdapter) {
         printAdapterTips();
         return function (): void {} 
+      }
+
+      if (['support', 'platform'].includes(prop)) {
+        return runner[prop];
       }
 
       if (prop === 'run') {
