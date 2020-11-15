@@ -16,7 +16,7 @@ export const printErrorTips = ({ name, platform, options, error = {} }: Tips): v
 };
 
 export const printAdapterTips = (): void => {
-  console.error(`[Invalid Adapter] 没有可用Adapter, 请通过 create 方法进行配置，或检查是否满足以下格式。{ platrform: [Function], support: [Function], run: [Function]}`);
+  console.warn(`[Invalid Adapter] 没有可用Adapter, 请通过 create 方法进行配置，或检查是否满足以下格式。{ platrform: [Function], support: [Function], run: [Function]}`);
 }
 
 export const printFunctionTips = (name: string, adapter: AdapterBase): void => {
