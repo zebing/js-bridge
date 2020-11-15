@@ -14,7 +14,7 @@ exports.run = () => {
 
   // 使用默认 JsBridge
   // const JsBridge = require('../dist').default;
-
+  // Proxy = undefined;
   // 自定义适配器
   const { create, register } = require('../dist');
   const JsBridge = create([{
@@ -47,17 +47,32 @@ exports.run = () => {
   }]);
 
 
-  JsBridge.test({
-    param: 'param',
-    callback: function (options) {
-      console.log('回调', options)
-    }
-  });
+  // JsBridge.test({
+  //   param: 'param',
+  //   callback: function (options) {
+  //     console.log('回调', options)
+  //   }
+  // });
 
-  JsBridge.test1({
-    param: 'param',
+  // JsBridge.test1({
+  //   param: 'param',
+  //   callback: function (options) {
+  //     console.log('回调', options)
+  //   }
+  // });
+
+  Proxy = undefined;
+  // JsBridge.run('test', {
+  //   param: 'run test方法',
+  //   callback: function (options) {
+  //     console.log('run test方法回调', options)
+  //   }
+  // });
+
+  JsBridge.run('test1', {
+    param: 'run test1方法',
     callback: function (options) {
-      console.log('回调', options)
+      console.log('run test1方法回调', options)
     }
   });
 }
