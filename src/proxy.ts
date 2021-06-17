@@ -9,7 +9,7 @@ import {
 
 export default (runner: AdapterBase) => {
   const _run = runner.run;
-  runner.run  = function (name: string, options: any) {
+  runner.run  = function (name: string, options: any = {}) {
     return new Promise((resolve, reject) => {
       // 处理callback 方法
       const callback = options.callback;

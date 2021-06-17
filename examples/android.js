@@ -14,7 +14,7 @@ exports.run = () => {
 // Proxy = undefined;
   // 使用默认 JsBridge
   const JsBridge = require('../dist').default;
-  console.log(JsBridge.support('test'))
+  console.log(JsBridge.test1())
   console.log(JsBridge.support('test1'))
   JsBridge.test({test:'test'}).then((body) => {
     console.log('body: ', body)
