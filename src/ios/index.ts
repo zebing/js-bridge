@@ -25,15 +25,8 @@ export default class IOS implements AdapterBase {
   }
 
   run (name: string, options: Options = {}): void {
-    const callback: unknown = options.callback;
-    let data: Options = options;
-
     try {
-      if (callback) {
-        data.callback = register(callback);
-      }
-
-      window.webkit.messageHandlers[name].postMessage(JSON.stringify(data));
+      window.webkit.messageHandlers[name].postMessage(JSON.stringify(options));
     } catch (error) {
       printErrorTips({ name, platform: 'ios', options, error })
     }

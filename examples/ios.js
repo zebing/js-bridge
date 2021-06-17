@@ -18,6 +18,11 @@ exports.run = () => {
 
   // 使用默认 JsBridge
   // const JsBridge = require('../dist').default;
+  // console.log(JsBridge.support('test'))
+  // console.log(JsBridge.support('test1'))
+  // JsBridge.test({test:'test'}).then((body) => {
+  //   console.log('body: ', body)
+  // })
 
   // 自定义适配器
   const { create, register } = require('../dist');
@@ -44,14 +49,8 @@ exports.run = () => {
     },
 
     run (name, options) {
-      const callback = options.callback;
-      let data = options;
       
-      if (callback) {
-        data.callback = register(callback);
-      }
-      
-      window.webkit.messageHandlers[name].postMessage(JSON.stringify(data));
+      window.webkit.messageHandlers[name].postMessage(JSON.stringify(options));
     }
   }]);
 
@@ -69,4 +68,8 @@ exports.run = () => {
       console.log('回调', options)
     }
   });
+
+  JsBridge.test({test:'test'}).then((body) => {
+    console.log('body: ', body)
+  })
 }

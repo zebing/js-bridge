@@ -32,8 +32,7 @@ export interface Options {
 export interface AdapterBase {
   platform (): boolean;
   support(name: string): boolean;
-  run(name: string, options: Options): void;
-  [key: string]: any
+  run(name: string, options: Options): Promise<any> | void;
 }
 
 export function getAdapter(adapters: AdapterBase[]) {

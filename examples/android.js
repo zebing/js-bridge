@@ -16,6 +16,9 @@ exports.run = () => {
   const JsBridge = require('../dist').default;
   console.log(JsBridge.support('test'))
   console.log(JsBridge.support('test1'))
+  JsBridge.test({test:'test'}).then((body) => {
+    console.log('body: ', body)
+  })
   // Proxy = undefined;
   // 自定义适配器
   // const { create, register } = require('../dist');

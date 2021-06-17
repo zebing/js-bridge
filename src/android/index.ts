@@ -14,22 +14,15 @@ export default class Android implements AdapterBase {
   }
 
   support (name: string): boolean {
-    const apis: any = window['jsBridgeMethods'] || {};
+    const apis: any = window.jsBridgeMethods || {};
     const support = isFunction(apis[name]);
 
     return support;
   }
 
-  run (name: string, options: Options): void {
-    const callback = options.callback;
-    let data: Options = options;
-    
+  run (name: string, options: Options) {
     try {
-      if (callback) {
-        data.callback = register(callback);
-      }
-      
-      window.jsBridgeMethods[name](JSON.stringify(data));
+      window.jsBridgeMethods[name](JSON.stringify(options));
     } catch (error) {
       printErrorTips({ name, platform: 'android', options, error });
     }

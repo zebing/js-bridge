@@ -9,5 +9,7 @@ export default class defaultAdapter implements AdapterBase {
     return false;
   }
 
-  run(name: string, options: Options = {}): void {}
+  run(name: string, options: Options = {}): Promise<any> | void {
+    return Promise.resolve();
+  }
 }
