@@ -1,6 +1,6 @@
 {
   "name": "@zebing/js-bridge",
-  "version": "1.0.0-beta0",
+  "version": "1.0.0",
   "description": "一个无感使用webview bridge 交互方案",
   "main": "dist/index.js",
   "scripts": {
