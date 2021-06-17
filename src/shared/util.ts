@@ -9,14 +9,14 @@ export const isObject: Function = (value: string) => call(value) === '[object Ob
 
 export const isFunction: Function = (value: string) => call(value) === '[object Function]';
 
-export const omit: Function = (data: object, property) => {
+export const omit: Function = (data: any, property: any) => {
   if (!property) {
     return data;
   }
 
   const prop: string[] = isArray(property) ? property : [property];
 
-  return Object.keys(data).reduce((newData: object, value: string) => {
+  return Object.keys(data).reduce((newData: any, value: string) => {
     if (!prop.includes(value)) {
       newData[value] = data[value];
     }
@@ -33,10 +33,11 @@ export interface AdapterBase {
   platform (): boolean;
   support(name: string): boolean;
   run(name: string, options: Options): void;
+  [key: string]: any
 }
 
 export function getAdapter(adapters: AdapterBase[]) {
-  const adapter: AdapterBase = adapters.find((adapter: AdapterBase, index: number) => {
+  const adapter: AdapterBase | undefined = adapters.find((adapter: AdapterBase, index: number) => {
     if (!isFunction(adapter.platform)) {
       return false;
     }

@@ -14,7 +14,7 @@ export default class Android implements AdapterBase {
   }
 
   support (name: string): boolean {
-    const apis: object = window['jsBridgeMethods'] || {};
+    const apis: any = window['jsBridgeMethods'] || {};
     const support = isFunction(apis[name]);
 
     return support;

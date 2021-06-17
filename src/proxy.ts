@@ -1,8 +1,8 @@
-import { printRegistTips, defaultAdapter, printAdapterTips } from './shared';
+import { printRegistTips, defaultAdapter, printAdapterTips, AdapterBase } from './shared';
 
-export default (runner) => {
+export default (runner: AdapterBase) => {
   const _run = runner.run;
-  const run  = function (name, options) {
+  runner.run  = function (name: string, options: any) {
     if (!runner.support(name)) {
       let platform = 'unknown';
       try {
@@ -12,32 +12,29 @@ export default (runner) => {
       return;
     }
   
-    _run.apply(runner, arguments);
+    _run.call(runner, name, options);
   }
 
+  // 不支持 Proxy
   if (typeof Proxy !== "function") {
-    runner.run = run;
     return runner;
   }
 
   return new Proxy(runner, {
-    get(target, prop: string): Function {
+    get(target: any, prop: string): Function {
+      // 没有 Adapter 可用
       if (target instanceof defaultAdapter) {
         printAdapterTips();
         return function (): void {} 
       }
 
-      if (['support', 'platform'].includes(prop)) {
+      if (['support', 'platform', 'run'].includes(prop)) {
         return runner[prop];
-      }
-
-      if (prop === 'run') {
-        return run;
       }
 
       // target不支持 prop 方法
       if (!target.support(prop)) {
-        return function (options): void {
+        return function (options: any): void {
           let platform = 'unknown';
           try {
             platform = window.navigator.userAgent;
