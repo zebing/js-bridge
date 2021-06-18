@@ -19,7 +19,7 @@ export default (runner: AdapterBase) => {
         }
         resolve(body);
       }
-      options.callback = register(callbackFN);
+      options.callback = register(name, callbackFN);
 
       // 检查name 是否支持
       if (!runner.support(name)) {

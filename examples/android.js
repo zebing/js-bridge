@@ -6,7 +6,7 @@ exports.run = () => {
     jsBridgeMethods: {
       test (options) {
         const optionsParse = JSON.parse(options)
-        console.log('调用jsBridgeMethods test', optionsParse, window[optionsParse.callback], optionsParse.callback)
+        // console.log('调用jsBridgeMethods test', optionsParse, window[optionsParse.callback], optionsParse.callback)
         window[optionsParse.callback](optionsParse);
       }
     }
@@ -18,6 +18,19 @@ exports.run = () => {
   console.log(JsBridge.support('test1'))
   JsBridge.test({test:'test'}).then((body) => {
     console.log('body: ', body)
+  })
+  JsBridge.test({test:'test'}).then((body) => {
+    console.log('body: ', body)
+  })
+  JsBridge.test({test:'test'}).then((body) => {
+    console.log('body: ', body)
+  })
+  JsBridge.test({test:'test'}).then((body) => {
+    console.log('body: ', body)
+  })
+  JsBridge.test({test:'test'}).then((body) => {
+    console.log('body: ', body)
+    console.log(Object.keys(window))
   })
   // Proxy = undefined;
   // 自定义适配器
