@@ -26,7 +26,15 @@
     "type": "git",
     "url": "git+https://github.com/zebing/js-bridge.git"
   },
-  "keywords": [],
+  "keywords": [
+    "js-bridge",
+    "Hybrid",
+    "h5",
+    "android",
+    "ios",
+    "原生",
+    "交互"
+  ],
   "author": "",
   "license": "ISC",
   "bugs": {

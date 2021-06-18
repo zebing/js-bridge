@@ -1,5 +1,6 @@
 # @zebing/js-bridge
 一个无感使用webview bridge 交互方案。
+
 在Hybrid开发过程中，为了提供更多的功能和更好的用户体验，常常需要与原生进行交互，因此产生了js-bridge。
 ### 1. 默认交互方案：
 js-bridge提供了无感使用的方案，只针对android和ios,只要h5跟native端遵循以下规则。
