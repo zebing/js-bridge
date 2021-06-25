@@ -53,17 +53,6 @@ export default (runner: AdapterBase) => {
         return (runner as any)[prop];
       }
 
-      // target不支持 prop 方法
-      if (!target.support(prop)) {
-        return function (options: any): void {
-          let platform = 'unknown';
-          try {
-            platform = window.navigator.userAgent;
-          } catch(err) {}
-          printRegistTips({ name: prop, platform, options, error: {} });
-        };
-      }
-
       // 用户自定义方法执行
       return runner.run.bind(target, prop);
     }

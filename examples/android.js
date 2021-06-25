@@ -32,6 +32,10 @@ exports.run = () => {
     console.log('body: ', body)
     console.log(Object.keys(window))
   })
+  JsBridge.test1({test:'test'}).then((body) => {
+    console.log('body: ', body)
+    console.log(Object.keys(window))
+  })
   // Proxy = undefined;
   // 自定义适配器
   // const { create, register } = require('../dist');

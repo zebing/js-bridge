@@ -1,3 +1,3 @@
-require('./android').run();
+// require('./android').run();
 
-// require('./ios').run();
+require('./ios').run();
