@@ -28,6 +28,7 @@ export default (runner: AdapterBase) => {
           platform = window.navigator.userAgent;
         } catch(err) {}
         printRegistTips({ name, platform, options, error: {} });
+        resolve({});
         return;
       }
     
