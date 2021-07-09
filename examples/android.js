@@ -16,19 +16,19 @@ exports.run = () => {
   const JsBridge = require('../dist').default;
   console.log(JsBridge.test1())
   console.log(JsBridge.support('test1'))
-  JsBridge.test({test:'test'}).then((body) => {
+  JsBridge.test({test:'test', callback: true }).then((body) => {
     console.log('body: ', body)
   })
-  JsBridge.test({test:'test'}).then((body) => {
+  JsBridge.test({test:'test', callback: true }).then((body) => {
     console.log('body: ', body)
   })
-  JsBridge.test({test:'test'}).then((body) => {
+  JsBridge.test({test:'test', callback: true }).then((body) => {
     console.log('body: ', body)
   })
-  JsBridge.test({test:'test'}).then((body) => {
+  JsBridge.test({test:'test', callback: true }).then((body) => {
     console.log('body: ', body)
   })
-  JsBridge.test({test:'test'}).then((body) => {
+  JsBridge.test({test:'test', callback: true }).then((body) => {
     console.log('body: ', body)
     console.log(Object.keys(window))
   })

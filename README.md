@@ -88,6 +88,7 @@ jsBridge.test({
 jsBridge.test({
   xxx: '参数1'，
   xxx: '参数2',
+  callback: true,
 }).then((result) => {
 
 })

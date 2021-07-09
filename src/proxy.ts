@@ -12,14 +12,17 @@ export default (runner: AdapterBase) => {
   runner.run  = function (name: string, options: any = {}) {
     return new Promise((resolve, reject) => {
       // 处理callback 方法
-      const callback = options.callback;
-      const callbackFN = function (body: object) {
-        if (isFunction(callback)) {
-          callback(body);
+      const callback: boolean | Function = options.callback;
+      if (callback) {
+        const callbackFN = function (body: object) {
+          if (typeof callback === 'function') {
+            callback(body);
+          }
+          resolve(body);
         }
-        resolve(body);
+        options.callback = register(name, callbackFN);
       }
-      options.callback = register(name, callbackFN);
+      
 
       // 检查name 是否支持
       if (!runner.support(name)) {
